@@ -20,14 +20,16 @@ class PaymentSettings extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.add),
               onPressed: () async {
-                final added =
-                    await Navigator.push(context, MaterialPageRoute(builder: (context) => AddPaymentMethod()));
+                final added = await Navigator.push(context, MaterialPageRoute(builder: (context) => AddPaymentMethod()));
                 if (added == true) await paymentMethods.refresh();
               },
             )
           ],
         ),
-        body: ChangeNotifierProvider(builder: (_) => DefaultPaymentMethod(), child: PaymentMethodsList()));
+        body: ChangeNotifierProvider(
+          create: (_) => DefaultPaymentMethod(),
+          child: PaymentMethodsList(),
+        ));
   }
 }
 
@@ -46,8 +48,7 @@ class PaymentMethods extends ChangeNotifier {
       if (listData.length == 0) {
         paymentMethods = List();
       } else {
-        paymentMethods =
-            listData.map((item) => PaymentMethod(item['id'], item['card']['last4'], item['card']['brand'])).toList();
+        paymentMethods = listData.map((item) => PaymentMethod(item['id'], item['card']['last4'], item['card']['brand'])).toList();
       }
       notifyListeners();
     });
@@ -93,8 +94,8 @@ class PaymentMethodsList extends StatelessWidget {
     );
   }
 
-  Widget buildListView(List<PaymentMethod> listData, CustomerSession stripeSession,
-      DefaultPaymentMethod defaultPaymentMethod, PaymentMethods paymentMethods, BuildContext rootContext) {
+  Widget buildListView(List<PaymentMethod> listData, CustomerSession stripeSession, DefaultPaymentMethod defaultPaymentMethod, PaymentMethods paymentMethods,
+      BuildContext rootContext) {
     if (listData.length == 0) {
       return ListView();
     } else {
@@ -119,10 +120,7 @@ class PaymentMethodsList extends StatelessWidget {
                               child: Text("Yes"),
                               onPressed: () async {
                                 Navigator.pop(rootContext);
-                                showDialog(
-                                    context: rootContext,
-                                    barrierDismissible: false,
-                                    builder: (context) => Center(child: CircularProgressIndicator()));
+                                showDialog(context: rootContext, barrierDismissible: false, builder: (context) => Center(child: CircularProgressIndicator()));
                                 final result = await stripeSession.detachPaymentMethod(card.id);
                                 Navigator.pop(rootContext);
                                 if (result != null) {

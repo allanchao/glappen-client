@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:garderobelappen/ui/payment_settings.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +31,7 @@ class _ConfirmPurchaseState extends State<ConfirmPurchase> {
 
   @override
   Widget build(BuildContext context) {
-    final loc = AppLocalizations.of(context);
+//    final loc = EasyLocalization.of(context).delegates;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -44,7 +43,8 @@ class _ConfirmPurchaseState extends State<ConfirmPurchase> {
               flex: 2,
             ),
             Text(
-              loc.tr('confirmPurchase.title'),
+              "confirm purchase",
+              //loc.tr('confirmPurchase.title'),
               style: TextStyle(
                 fontSize: 24,
               ),
@@ -80,7 +80,7 @@ class _ConfirmPurchaseState extends State<ConfirmPurchase> {
             Spacer(
               flex: 3,
             ),
-            Text(loc.tr('confirmPurchase.body')),
+            Text("Confirm purchase"),//loc.tr('confirmPurchase.body')),
             Spacer(
               flex: 2,
             ),

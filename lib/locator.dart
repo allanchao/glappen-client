@@ -5,7 +5,7 @@ import 'package:garderobelappen/GlappenService.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stripe_sdk/stripe_sdk.dart';
 
-GetIt locator = GetIt();
+GetIt locator = GetIt.instance; // GetIt();
 
 GetIt getLocator() {
   locator.registerLazySingleton<Firestore>(() => Firestore.instance);

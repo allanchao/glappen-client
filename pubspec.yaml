@@ -23,46 +23,55 @@ dependencies:
     sdk: flutter
 
   garderobel_api:
-     path: ./../garderobel_api
-#    git:
+#     path: ./../garderobel_api
+    git:
+      url: https://github.com/allanchao/glappen-firebase-client.git
 #      url: git@bitbucket.org:garderobelapp/garderobel_api.git # bitrise
-      # url: git://bitbucket.org:garderobelapp/garderobel_api.git
-      # url: https://ezet@bitbucket.org/garderobelapp/garderobel_api.git
+#       url: git://bitbucket.org:garderobelapp/garderobel_api.git
+#       url: https://ezet@bitbucket.org/garderobelapp/garderobel_api.git
 
 #  stripe_sdk: ^2.3.0
   stripe_sdk:
-    path: ./../stripe_sdk
-  # git:
-  # url: git://github.com/ezet/stripe_sdk.git
+#    path: ./../stripe_sdk
+   git:
+    url: git://github.com/ezet/stripe_sdk.git
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^0.1.3
 
-  easy_localization: ^1.3.1
+  easy_localization: ^2.2.1
 
-  firebase_ui: ^1.0.7
-  firebase_core: ^0.4.0+1
-  cloud_firestore: ^0.12.9
-  firebase_auth: ^0.11.1+12
-  cloud_functions: ^0.4.1
+  firebase_ui: ^1.0.8
+  firebase_core: ^0.4.4+3
+  cloud_firestore: ^0.13.5
+  firebase_auth: ^0.16.0
+  cloud_functions: ^0.4.2+3
 
   uni_links: ^0.2.0
 
   #  qr_code_scanner: ^0.0.10
   #  barcode_scan: ^1.0.0
-  qr_mobile_vision: ^0.2.2
+  qr_mobile_vision: ^1.0.1+1
 
   flutter_swiper: ^1.1.6
 
-  provider: ^3.0.0+1
-  get_it: ^1.0.3+2
+  provider: ^4.0.5+1
+  get_it: ^4.0.2
 
-  shared_preferences: ^0.5.3+4
+  shared_preferences: ^0.5.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+dependency_overrides:
+  firebase_auth: 0.16.0 # needed to resolve
+  # Because garderobelappen depends on firebase_ui ^1.0.8 which depends on firebase_auth ^0.14.0+5, firebase_auth ^0.14.0+5 is required.
+  # So, because garderobelappen depends on firebase_auth ^0.16.0, version solving failed.
+  # pub get failed (1; So, because garderobelappen depends on firebase_auth ^0.16.0, version solving failed.)
+  cloud_firestore: ^0.13.5
+  # Because garderobelappen depends on garderobel_api from git which depends on cloud_firestore ^0.12.7, cloud_firestore ^0.12.7 is required.
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

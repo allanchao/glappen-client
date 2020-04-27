@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+//import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +34,12 @@ class NoReceipts extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              AppLocalizations.of(context).tr('dashboard.emptyState.title'),
+              "empty title",
+//              AppLocalizations.of(context).tr('dashboard.emptyState.title'),
             ),
             Text(
-              AppLocalizations.of(context).tr('dashboard.emptyState.body'),
+              "empty body",
+//              AppLocalizations.of(context).tr('dashboard.emptyState.body'),
               textAlign: TextAlign.center,
             )
           ],

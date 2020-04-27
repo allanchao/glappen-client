@@ -17,6 +17,8 @@ void main() {
   getLocator();
   runApp(EasyLocalization(
     child: Garderobelappen(),
+    supportedLocales: [Locale('en', 'US')],
+    path: 'assets/l8n',
   ));
 }
 
@@ -31,7 +33,7 @@ class Garderobelappen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var data = EasyLocalizationProvider.of(context).data;
+//    var data = EasyLocalizationProvider.of(context).data;
     // data.changeLocale(Locale("nb", "NO"));
     var materialApp = MaterialApp(
       title: _title,
@@ -56,17 +58,18 @@ class Garderobelappen extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         //app-specific localization
-        EasylocaLizationDelegate(locale: data.locale, path: 'assets/l8n'),
+//        EasylocaLizationDelegate(locale: data.locale, path: 'assets/l8n'),
       ],
-      supportedLocales: [
-        Locale('nb', 'NO'),
-      ],
-      locale: data.savedLocale,
+//      supportedLocales: [
+//        Locale('nb', 'NO'),
+//      ],
+//      locale: data.savedLocale,
       home: Authenticator(),
 //      initialRoute: Authenticator.routeName,
     );
 
-    final localizationProvider = EasyLocalizationProvider(data: data, child: materialApp);
+//    var data = EasyLocalizationProvider.of(context).data;
+//    final localizationProvider = EasyLocalizationProvider(data: data, child: materialApp);
 
     return MultiProvider(providers: [
       StreamProvider<FirebaseUser>.value(value: FirebaseAuth.instance.onAuthStateChanged),
@@ -74,9 +77,9 @@ class Garderobelappen extends StatelessWidget {
         value: locator.get<GlappenService>().getCurrentUserStripeId(),
       ),
       ChangeNotifierProvider(
-        builder: (_) => PaymentMethods(),
+        create: (_) => PaymentMethods(),
       )
-    ], child: localizationProvider);
+    ], child: materialApp);
   }
 }
 
