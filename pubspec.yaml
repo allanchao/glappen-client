@@ -19,34 +19,85 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+  cupertino_icons: ^0.1.3
+  # connect to dropbox
+  #  dropbox_client: ^0.5.3 # this one doesn't support most methods, and uses java/ios native methods that are hard to modify
+  restio: ^0.5.2
+
+  random_string: ^2.0.1
+  json_annotation: ^3.0.1
+  url_launcher: ^5.4.2
+  english_words: ^3.1.5
+  # used for firebase cloud database
+  cloud_firestore: ^0.13.5
+  # Used for firebase chat
+  firebase_auth: ^0.16.0
+  google_sign_in: ^4.4.2
+  fluttertoast: ^4.0.1
+  image_picker: ^0.6.5
+  shared_preferences: ^0.5.6+3
+  firebase_storage: ^3.1.5
+  cached_network_image: 2.0.0-rc.1
+  intl: ^0.16.1
+  firebase_messaging: 6.0.13
+  flutter_local_notifications: 1.4.0
+  photo_view: ^0.9.2
+  # used for google sheets
+  gsheets: ^0.2.1+1
+  # gsheetscsv
+  flutter_cache_manager: ^1.2.2
+  csv: ^4.0.3
+  # magiccart (provider - widget notification architecture)
+  provider: ^4.0.5
+  device_info: ^0.4.2+1
+  # hive instead of shared preferences
+  hive: ^1.4.1+1
+  hive_flutter: ^0.3.0+2
+  # flutter websocket manager
+  # websocket_manager: ^0.2.2 # this is a package from github - this package sucks!
+  web_socket_channel: ^1.1.0 # this is the official flutter websockets package
+  # webrtc
+  flutter_webrtc: ^0.2.6
+  #duplicated shared_preferences:
+  shared_preferences_macos:
+  shared_preferences_web:
+  http: ^0.12.0+4
+
+  # Required for MediaRecorder example
+  path_provider:
+  path_provider_macos:
+  # flutter geolocator
+  geolocator: ^5.3.1
+  # stripe
+  get_it: ^4.0.2
+  #  get_it: ^1.0.3+2
+  cloud_functions: ^0.4.1
+  stripe_sdk: ^2.8.1
+
+
+
+
+
+
 
   garderobel_api:
-#     path: ./../garderobel_api
+    #   #     path: ./../garderobel_api
     git:
       url: https://github.com/allanchao/glappen-firebase-client.git
-#      url: git@bitbucket.org:garderobelapp/garderobel_api.git # bitrise
-#       url: git://bitbucket.org:garderobelapp/garderobel_api.git
-#       url: https://ezet@bitbucket.org/garderobelapp/garderobel_api.git
+    #      url: git@bitbucket.org:garderobelapp/garderobel_api.git # bitrise
+    #       url: git://bitbucket.org:garderobelapp/garderobel_api.git
+    #       url: https://ezet@bitbucket.org/garderobelapp/garderobel_api.git
 
-#  stripe_sdk: ^2.3.0
-  stripe_sdk:
-#    path: ./../stripe_sdk
-   git:
-    url: git://github.com/ezet/stripe_sdk.git
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+    #  stripe_sdk: ^2.3.0
+    #  stripe_sdk:
+  #    path: ./../stripe_sdk
+  #    git:
+  #      url: git://github.com/ezet/stripe_sdk.git
 
   easy_localization: ^2.2.1
 
   firebase_ui: ^1.0.8
   firebase_core: ^0.4.4+3
-  cloud_firestore: ^0.13.5
-  firebase_auth: ^0.16.0
-  cloud_functions: ^0.4.2+3
 
   uni_links: ^0.2.0
 
@@ -56,25 +107,45 @@ dependencies:
 
   flutter_swiper: ^1.1.6
 
-  provider: ^4.0.5+1
-  get_it: ^4.0.2
 
-  shared_preferences: ^0.5.7
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  image_test_utils: ^1.0.0
+  build_runner: ^1.8.1
+  json_serializable: ^3.3.0
+  # test: ^1.14.2
+  # hive instead of shared preferences
+  hive_generator: ^0.7.0+2
 
 dependency_overrides:
+  crypto: 2.1.4 # needed for both restio and flutter_test https://github.com/tiagohm/restio/issues/3
+
   firebase_auth: 0.16.0 # needed to resolve
   # Because garderobelappen depends on firebase_ui ^1.0.8 which depends on firebase_auth ^0.14.0+5, firebase_auth ^0.14.0+5 is required.
   # So, because garderobelappen depends on firebase_auth ^0.16.0, version solving failed.
   # pub get failed (1; So, because garderobelappen depends on firebase_auth ^0.16.0, version solving failed.)
   cloud_firestore: ^0.13.5
   # Because garderobelappen depends on garderobel_api from git which depends on cloud_firestore ^0.12.7, cloud_firestore ^0.12.7 is required.
-
-# For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
+  intl: ^0.16.1
+    #Because easy_localization >=2.1.0+1 depends on flutter_localizations any from sdk which depends on intl 0.16.0, easy_localization >=2.1.0+1 requires intl 0.16.0.
+  #
+  #So, because flutterapp depends on both intl ^0.16.1 and easy_localization ^2.2.1, version solving failed.
+  #pub get failed (1; So, because flutterapp depends on both intl ^0.16.1 and easy_localization ^2.2.1, version solving failed.)
 
 # The following section is specific to Flutter.
 flutter:
